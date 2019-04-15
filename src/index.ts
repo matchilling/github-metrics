@@ -17,7 +17,7 @@ class PullRequestData {
   }
 }
 
-async function queryDb(dbFileName: string) {
+async function queryDb(dbFileName: string): Promise<PullRequestData[]> {
   const db = await sqlite.open(dbFileName);
   const results = await db.all("SELECT * FROM pull_requests");
   return results.map((result) => {
