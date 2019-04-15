@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "lib": ["es2017", "dom"],
     "module": "commonjs",
-    "target": "es2017"
-  }
+    "target": "es2017",
+
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }

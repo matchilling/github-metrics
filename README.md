@@ -27,7 +27,7 @@ Node v10+
 
 ###Usage
 ```
-PULL_REQUESTS_DATABASE_PATH=sample.db node ./node_modules/ts-node/dist/bin.js index.ts
+PULL_REQUESTS_DATABASE_PATH=sample.db node ./node_modules/ts-node/dist/bin.js src/index.ts
 ```
 
 The generated time series will be written to `stdout`.
