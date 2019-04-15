@@ -1,11 +1,12 @@
 import * as sqlite from 'sqlite';
 import * as moment from "moment";
+import {durationInSecondsExcludingWeekends} from "./weekend";
 
 class PullRequestData {
   differenceInSeconds: number;
 
   constructor(private createdAt: moment.Moment, private closedAt: moment.Moment, private updatedAt: moment.Moment, private mergedAt: moment.Moment) {
-    this.differenceInSeconds = moment.duration(this.mergedAt.diff(this.createdAt)).asSeconds();
+    this.differenceInSeconds = durationInSecondsExcludingWeekends(createdAt, mergedAt);
   }
 
   static from(createdAt: string, closedAt: string, updatedAt: string, mergedAt: string): PullRequestData {
