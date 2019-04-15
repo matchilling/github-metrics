@@ -7,7 +7,7 @@
     "start": "./node_modules/ts-node/dist/bin.js index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Csongor Zalatnai",
   "license": "ISC",
   "dependencies": {
     "moment": "^2.24.0",
@@ -17,5 +17,6 @@
   },
   "devDependencies": {
     "@types/node": "^11.13.4"
-  }
+  },
+  "repository": "git@github.com:zalatnaicsongor/github-metrics-graphite-exporter.git"
 }
