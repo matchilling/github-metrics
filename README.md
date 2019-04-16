@@ -1,33 +1,25 @@
-# Github PR metrics graphite exporter
+# Github PR Metrics Graphite Exporter
 
-### Description
-Converts raw github PR data to time series.
-
-The data point is the number of seconds elapsed between the creation of the PR and the merging of the PR.
+This exporter converts raw GitHub pull request data to time series. The exported data points represent the number of seconds elapsed between the creation of the pull request and the merging of the pull request.
 
 The timestamp is the creation time of the PR.
 
-Metrics name: `prs.time_to_merge`
+Exposed metrics name: `prs.time_to_merge`
 
-### Example output:
+## Usage
 
-```
-prs.time_to_merge 3450 1554125772
-prs.time_to_merge 935617 1553187544
-```
+```sh
+$ npm install
 
-### Requirements
-Node v10+
+# Path to the SQLite db file containing the PR data retrieved from GitHub.
+$ export PULL_REQUESTS_DATABASE_PATH=data/example.db
 
-### Installation
-`npm install`
+$ npm start
 
-### Required environment variables
-`PULL_REQUESTS_DATABASE_PATH`: path to the SQLite db file containing the PR data retrieved from GitHub. 
-
-###Usage
-```
-PULL_REQUESTS_DATABASE_PATH=sample.db node ./node_modules/ts-node/dist/bin.js src/index.ts
+# The generated time series will be written to `stdout`.
+# prs.time_to_merge 3450 1554125772
+# prs.time_to_merge 935617 1553187544
+# ...
 ```
 
-The generated time series will be written to `stdout`.
+If you have docker installed, try `make run` to explore the metric, the target which spins up a Graphite stack and injects some [sample data](./data/example.db). The Graphite UI is being exposed on [localhost:80](http://localhost).

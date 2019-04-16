@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "test": "jest",
-    "tsc": "tsc"
+    "dist": "tsc",
+    "start": "node ./node_modules/.bin/ts-node src/index.ts",
+    "test": "node ./node_modules/.bin/jest"
   },
   "author": "Csongor Zalatnai",
   "license": "ISC",
