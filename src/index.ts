@@ -6,7 +6,7 @@ class PullRequestData {
   differenceInSeconds: number;
 
   constructor(private createdAt: moment.Moment, private closedAt: moment.Moment, private updatedAt: moment.Moment, private mergedAt: moment.Moment) {
-    this.differenceInSeconds = durationInSecondsExcludingWeekends(createdAt, mergedAt);
+    this.differenceInSeconds = durationInSecondsExcludingWeekends(createdAt, mergedAt, true);
   }
 
   static from(createdAt: string, closedAt: string, updatedAt: string, mergedAt: string): PullRequestData {
