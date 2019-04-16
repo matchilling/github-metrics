@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/matchilling/github-metrics-graphite-exporter.svg?branch=master)](https://travis-ci.org/matchilling/github-metrics-graphite-exporter)
+
 # Github PR Metrics Graphite Exporter
 
 This exporter converts raw GitHub pull request data to time series. The exported data points represent the number of seconds elapsed between the creation of the pull request and the merging of the pull request.
