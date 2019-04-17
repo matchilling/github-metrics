@@ -24,4 +24,4 @@ $ npm start
 # ...
 ```
 
-If you have docker installed, try `make run` to explore the metric, the target which spins up a Graphite stack and injects some [sample data](./data/example.db). The Graphite UI is being exposed on [localhost:80](http://localhost).
+If you have docker installed, try `make run` to explore the metric. The target spins up a Graphite stack and injects some [sample data](./data/example.db) which can be explored through the exposed Graphite UI on [localhost:80](http://localhost).
