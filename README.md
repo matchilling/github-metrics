@@ -27,3 +27,8 @@ $ npm start
 ```
 
 If you have docker installed, try `make run` to explore the metric. The target spins up a Graphite stack and injects some [sample data](./data/example.db) which can be explored through the exposed Graphite UI on [localhost:80](http://localhost).
+
+## Todo
+
+- [x] Exclude non-business hours from calculation
+- [ ] Exclude public holidays from calculation
