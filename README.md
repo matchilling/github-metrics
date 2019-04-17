@@ -4,7 +4,7 @@
 
 [![Grafana Example](./data/github-pr-metrics.png)](./data/github-pr-metrics.png)
 
-This exporter converts raw GitHub pull request data to time series. The exported data points represent the number of seconds elapsed between the creation of the pull request and the merging of the pull request.
+This exporter converts raw GitHub pull request data to time series. The exported data points represent the number of seconds (⏰ business hours only, Mon-Fri 09:00 - 17:00) elapsed between the creation of the pull request and the merging of the pull request.
 
 The timestamp is the creation time of the PR.
 
