@@ -5,8 +5,10 @@
   "main": "index.ts",
   "scripts": {
     "dist": "tsc",
+    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 src/**/*.ts",
+    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write src/**/*.ts",
     "start": "node ./node_modules/.bin/ts-node src/index.ts",
-    "test": "node ./node_modules/.bin/jest"
+    "test": "npm run lint && node ./node_modules/.bin/jest"
   },
   "author": "Csongor Zalatnai",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.4",
     "jest": "^24.7.1",
+    "prettier": "1.17.0",
     "ts-jest": "^24.0.2"
   },
   "repository": "git@github.com:zalatnaicsongor/github-metrics-graphite-exporter.git"
