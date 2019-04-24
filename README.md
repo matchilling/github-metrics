@@ -8,25 +8,28 @@ This exporter converts raw GitHub pull request data to time series. The exported
 
 The timestamp is the creation time of the PR.
 
-Exposed metrics name: `prs.time_to_merge`
+Exposed metrics name: `github.{USER_NAME}.{REPO_NAME}.pull_requests.time_to_merge`
 
 ## Usage
 
 ```sh
 $ npm install
 
+# At the moment the user name & repo name are only used to build up the metrics path
+$ export USER_NAME=github-user-name
+$ export REPO_NAME=repository-name
+
 # Path to the SQLite db file containing the PR data retrieved from GitHub.
 $ export PULL_REQUESTS_DATABASE_PATH=data/example.db
 
-$ npm start
+# Push data to graphite
+$ npm start | nc localhost 2003
 
 # The generated time series will be written to `stdout`.
-# prs.time_to_merge 3450 1554125772
-# prs.time_to_merge 935617 1553187544
+# github.github-user-name.repository-name.pull_requests.time_to_merge 3450 1554125772
+# github.github-user-name.repository-name.pull_requests.time_to_merge 935617 1553187544
 # ...
 ```
-
-If you have docker installed, try `make run` to explore the metric. The target spins up a Graphite stack and injects some [sample data](./data/example.db) which can be explored through the exposed Graphite UI on [localhost:80](http://localhost).
 
 ## Todo
 

@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  grafana:
+    build: './grafana'
+    container_name: github-metrics-grafana
+    restart: always
+    ports:
+      - '3000:3000'
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    container_name: github-metrics-graphite
+    restart: always
+    ports:
+      - '80:80'
+      - '2003:2003'
+      - '2004:2004'
+      - '8080:8080'

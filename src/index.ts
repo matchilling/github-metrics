@@ -33,7 +33,7 @@ class PullRequestData {
   }
 
   toGraphite(): string {
-    return `prs.time_to_merge ${
+    return `github.${process.env.USER_NAME}.${process.env.REPO_NAME}.pull_requests.time_to_merge ${
       this.differenceInSeconds
     } ${this.createdAt.unix()}\n`;
   }
@@ -51,6 +51,16 @@ async function queryDb(dbFileName: string): Promise<PullRequestData[]> {
       data.mergedAt
     );
   });
+}
+
+if (!process.env.USER_NAME) {
+  console.error('Environment variable "USER_NAME" must be defined');
+  process.exit(1);
+}
+
+if (!process.env.REPO_NAME) {
+  console.error('Environment variable "REPO_NAME" must be defined');
+  process.exit(1);
 }
 
 if (!process.env.PULL_REQUESTS_DATABASE_PATH) {

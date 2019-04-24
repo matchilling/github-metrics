@@ -1,0 +1,11 @@
+# https://grafana.com/docs/administration/provisioning/#datasources
+datasources:
+- name: Graphite
+  type: graphite
+  isDefault: true
+  access: proxy
+  url: http://graphite:8080
+  jsonData:
+    graphiteVersion: '1.1'
+  version: 1
+  editable: false
