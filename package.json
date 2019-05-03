@@ -1,29 +1,33 @@
 {
   "name": "github-metrics-graphite-exporter",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
-  "scripts": {
-    "dist": "tsc",
-    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 src/**/*.ts",
-    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write src/**/*.ts",
-    "start": "node ./node_modules/.bin/ts-node src/index.ts",
-    "test": "npm run lint && node ./node_modules/.bin/jest"
-  },
-  "author": "Csongor Zalatnai",
-  "license": "ISC",
+  "description": "[![Build Status](https://travis-ci.org/matchilling/github-metrics-graphite-exporter.svg?branch=master)](https://travis-ci.org/matchilling/github-metrics-graphite-exporter)",
+  "main": "src/cli.js",
   "dependencies": {
-    "moment": "^2.24.0",
-    "sqlite": "^3.0.3",
-    "ts-node": "^8.0.3",
-    "typescript": "^3.4.3"
+    "better-sqlite3": "^5.4.0",
+    "commander": "^2.20.0",
+    "github-graphql-api": "^1.0.6",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.4",
-    "jest": "^24.7.1",
-    "prettier": "1.17.0",
-    "ts-jest": "^24.0.2"
+    "jest": "^24.8.0",
+    "prettier": "^1.17.0"
   },
-  "repository": "git@github.com:zalatnaicsongor/github-metrics-graphite-exporter.git"
+  "scripts": {
+    "env": "node src/print_env.js",
+    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 src/**/*.js src/*.js",
+    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write src/**/*.js src/*.js",
+    "start": "node src/cli.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matchilling/github-metrics-graphite-exporter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matchilling/github-metrics-graphite-exporter/issues"
+  },
+  "homepage": "https://github.com/matchilling/github-metrics-graphite-exporter#readme"
 }

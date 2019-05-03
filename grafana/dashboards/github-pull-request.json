@@ -18,31 +18,101 @@
   "links": [],
   "panels": [
     {
+      "content": "# Pull request time to merge\n\nDays elapsed between the creation and merge of a pull request.",
+      "gridPos": {
+        "h": 3,
+        "w": 18,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "links": [],
+      "mode": "markdown",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "text"
+    },
+    {
+      "datasource": "Graphite",
+      "description": "Pull request time to merge: Days elapsed between the creation and merge of a pull request.",
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 3
+      },
+      "hideTimeOverride": true,
+      "id": 10,
+      "links": [],
+      "options": {
+        "maxValue": "172800",
+        "minValue": 0,
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "thresholds": [
+          {
+            "color": "green",
+            "index": 0,
+            "value": null
+          },
+          {
+            "color": "#EAB839",
+            "index": 1,
+            "value": 86400
+          },
+          {
+            "color": "red",
+            "index": 2,
+            "value": 172800
+          }
+        ],
+        "valueMappings": [],
+        "valueOptions": {
+          "decimals": 1,
+          "prefix": "",
+          "stat": "mean",
+          "suffix": "",
+          "unit": "dthms"
+        }
+      },
+      "pluginVersion": "6.1.4",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "github.*.*.pull_requests.time_to_merge"
+        }
+      ],
+      "timeFrom": "now/M",
+      "timeShift": null,
+      "title": "Current Month",
+      "type": "gauge"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "Graphite",
-      "description": "Days elapsed between the creation and merge of a pull request.",
-      "fill": 2,
+      "description": "Pull request time to merge: Days elapsed between the creation and merge of a pull request.",
+      "fill": 1,
       "gridPos": {
-        "h": 13,
-        "w": 16,
+        "h": 8,
+        "w": 18,
         "x": 0,
-        "y": 0
+        "y": 12
       },
-      "id": 2,
+      "hideTimeOverride": true,
+      "id": 16,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": false,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
+        "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -59,29 +129,19 @@
       "targets": [
         {
           "refId": "A",
-          "target": "github.newstore.newstore.pull_requests.time_to_merge"
+          "target": "summarize(github.*.*.pull_requests.time_to_merge, '1w', 'avg')"
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 86400,
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": null,
+      "thresholds": [],
+      "timeFrom": "now/M",
       "timeRegions": [],
-      "timeShift": null,
-      "title": "Pull request time to merge",
+      "timeShift": "1M/M",
+      "title": "Trend over the last 4 weeks",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -92,17 +152,16 @@
       },
       "yaxes": [
         {
-          "format": "s",
-          "label": "Duration",
-          "logBase": 2,
+          "format": "dtdurations",
+          "label": null,
+          "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "decimals": null,
           "format": "short",
-          "label": "",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -113,6 +172,174 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": "Graphite",
+      "description": "",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 20
+      },
+      "hideTimeOverride": true,
+      "id": 8,
+      "links": [],
+      "options": {
+        "maxValue": "172800",
+        "minValue": 0,
+        "orientation": "auto",
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "thresholds": [
+          {
+            "color": "green",
+            "index": 0,
+            "value": null
+          },
+          {
+            "color": "#EAB839",
+            "index": 1,
+            "value": 86400
+          },
+          {
+            "color": "red",
+            "index": 2,
+            "value": 172800
+          }
+        ],
+        "valueMappings": [],
+        "valueOptions": {
+          "decimals": 1,
+          "prefix": "",
+          "stat": "mean",
+          "suffix": "",
+          "unit": "dtdurations"
+        }
+      },
+      "pluginVersion": "6.1.4",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "github.*.*.pull_requests.time_to_merge"
+        }
+      ],
+      "timeFrom": "now/M",
+      "timeShift": "1M/M",
+      "title": "Previous Month",
+      "type": "gauge"
+    },
+    {
+      "datasource": "Graphite",
+      "description": "",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 20
+      },
+      "hideTimeOverride": true,
+      "id": 6,
+      "links": [],
+      "options": {
+        "maxValue": "172800",
+        "minValue": 0,
+        "orientation": "auto",
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "thresholds": [
+          {
+            "color": "green",
+            "index": 0,
+            "value": null
+          },
+          {
+            "color": "#EAB839",
+            "index": 1,
+            "value": 86400
+          },
+          {
+            "color": "red",
+            "index": 2,
+            "value": 172800
+          }
+        ],
+        "valueMappings": [],
+        "valueOptions": {
+          "decimals": 1,
+          "prefix": "",
+          "stat": "mean",
+          "suffix": "",
+          "unit": "dtdurations"
+        }
+      },
+      "pluginVersion": "6.1.4",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "github.*.*.pull_requests.time_to_merge"
+        }
+      ],
+      "timeFrom": "now/M",
+      "timeShift": "2M/M",
+      "title": "Two Months ago",
+      "type": "gauge"
+    },
+    {
+      "datasource": "Graphite",
+      "description": "",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 20
+      },
+      "hideTimeOverride": true,
+      "id": 12,
+      "links": [],
+      "options": {
+        "maxValue": "172800",
+        "minValue": 0,
+        "orientation": "auto",
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true,
+        "thresholds": [
+          {
+            "color": "green",
+            "index": 0,
+            "value": null
+          },
+          {
+            "color": "#EAB839",
+            "index": 1,
+            "value": 86400
+          },
+          {
+            "color": "red",
+            "index": 2,
+            "value": 172800
+          }
+        ],
+        "valueMappings": [],
+        "valueOptions": {
+          "decimals": 1,
+          "prefix": "",
+          "stat": "mean",
+          "suffix": "",
+          "unit": "dtdurations"
+        }
+      },
+      "pluginVersion": "6.1.4",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "github.*.*.pull_requests.time_to_merge"
+        }
+      ],
+      "timeFrom": "now/M",
+      "timeShift": "3M/M",
+      "title": "Three Months ago",
+      "type": "gauge"
     }
   ],
   "refresh": false,
@@ -123,8 +350,8 @@
     "list": []
   },
   "time": {
-    "from": "now-90d",
-    "to": "now"
+    "from": "now/d",
+    "to": "now/d"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -152,7 +379,7 @@
     ]
   },
   "timezone": "",
-  "title": "GitHub",
-  "uid": "8LoCwsgZz",
+  "title": "GitHub Stats",
+  "uid": "8LoCwsgZZ",
   "version": 1
 }
