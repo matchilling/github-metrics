@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/matchilling/github-metrics-graphite-exporter.svg?branch=master)](https://travis-ci.org/matchilling/github-metrics-graphite-exporter)
+[![Build Status](https://travis-ci.org/matchilling/github-metrics.svg?branch=master)](https://travis-ci.org/matchilling/github-metrics)
 
 # Github Pull Request Metrics
 
