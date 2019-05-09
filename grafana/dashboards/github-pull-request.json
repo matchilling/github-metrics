@@ -68,25 +68,35 @@
             "value": 172800
           }
         ],
-        "valueMappings": [],
+        "valueMappings": [
+          {
+            "from": "",
+            "id": 1,
+            "operator": "",
+            "text": "1",
+            "to": "",
+            "type": 1,
+            "value": "121231234"
+          }
+        ],
         "valueOptions": {
           "decimals": 1,
           "prefix": "",
           "stat": "mean",
           "suffix": "",
-          "unit": "dthms"
+          "unit": "dtdurations"
         }
       },
       "pluginVersion": "6.1.4",
       "targets": [
         {
           "refId": "A",
-          "target": "github.*.*.pull_requests.time_to_merge"
+          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
       "timeShift": null,
-      "title": "Current Month",
+      "title": "Current Month - All Repositories",
       "type": "gauge"
     },
     {
@@ -95,24 +105,29 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Graphite",
+      "decimals": 2,
       "description": "Pull request time to merge: Days elapsed between the creation and merge of a pull request.",
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 18,
         "x": 0,
-        "y": 12
+        "y": 11
       },
       "hideTimeOverride": true,
       "id": 16,
       "legend": {
-        "avg": false,
+        "alignAsTable": true,
+        "avg": true,
         "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": false,
         "min": false,
-        "show": false,
+        "rightSide": true,
+        "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -129,7 +144,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "summarize(github.*.*.pull_requests.time_to_merge, '1w', 'avg')"
+          "target": "aliasByNode(summarize(github.*.*.pull_requests.time_to_merge, '1w', 'avg'), 2)"
         }
       ],
       "thresholds": [],
@@ -180,7 +195,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 20
+        "y": 19
       },
       "hideTimeOverride": true,
       "id": 8,
@@ -221,12 +236,12 @@
       "targets": [
         {
           "refId": "A",
-          "target": "github.*.*.pull_requests.time_to_merge"
+          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
       "timeShift": "1M/M",
-      "title": "Previous Month",
+      "title": "Previous Month - All Repositories",
       "type": "gauge"
     },
     {
@@ -236,7 +251,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 20
+        "y": 19
       },
       "hideTimeOverride": true,
       "id": 6,
@@ -277,12 +292,12 @@
       "targets": [
         {
           "refId": "A",
-          "target": "github.*.*.pull_requests.time_to_merge"
+          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
       "timeShift": "2M/M",
-      "title": "Two Months ago",
+      "title": "Two Months ago - All Repositories",
       "type": "gauge"
     },
     {
@@ -292,7 +307,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 20
+        "y": 19
       },
       "hideTimeOverride": true,
       "id": 12,
@@ -333,12 +348,12 @@
       "targets": [
         {
           "refId": "A",
-          "target": "github.*.*.pull_requests.time_to_merge"
+          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
       "timeShift": "3M/M",
-      "title": "Three Months ago",
+      "title": "Three Months ago - All Repositories",
       "type": "gauge"
     }
   ],
@@ -350,8 +365,8 @@
     "list": []
   },
   "time": {
-    "from": "now/d",
-    "to": "now/d"
+    "from": "now-90d",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
