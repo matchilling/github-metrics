@@ -35,7 +35,7 @@
     },
     {
       "datasource": "Graphite",
-      "description": "Pull request time to merge: Days elapsed between the creation and merge of a pull request.",
+      "description": "",
       "gridPos": {
         "h": 8,
         "w": 18,
@@ -91,7 +91,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
+          "target": "averageSeries(github.*.*.pull_requests.*.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
@@ -102,11 +102,11 @@
     {
       "aliasColors": {},
       "bars": false,
+      "cacheTimeout": "",
       "dashLength": 10,
       "dashes": false,
       "datasource": "Graphite",
       "decimals": 2,
-      "description": "Pull request time to merge: Days elapsed between the creation and merge of a pull request.",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -115,13 +115,11 @@
         "y": 11
       },
       "hideTimeOverride": true,
-      "id": 16,
+      "id": 18,
       "legend": {
         "alignAsTable": true,
         "avg": true,
         "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
         "max": false,
         "min": false,
         "rightSide": true,
@@ -144,14 +142,15 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(summarize(github.*.*.pull_requests.time_to_merge, '1w', 'avg'), 2)"
+          "target": "aliasByMetric(smartSummarize(groupByNode(github.*.*.pull_requests.*.time_to_merge, 2, 'sum'), '1w', 'avg'))",
+          "textEditor": false
         }
       ],
       "thresholds": [],
-      "timeFrom": "now/M",
+      "timeFrom": "3M",
       "timeRegions": [],
-      "timeShift": "1M/M",
-      "title": "Trend over the last 4 weeks",
+      "timeShift": null,
+      "title": "Trend over the last 3 month by repository",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -180,7 +179,98 @@
           "logBase": 1,
           "max": null,
           "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Graphite",
+      "decimals": 2,
+      "description": "### Pull Request Sizes\n\nThe pull request size calculated based on the total lines of code changed (`total additions + total deletions`).\n\n| Name       | Description                              |\n| ---------- | ---------------------------------------- |\n| `size_XS`  | Denotes a PR that changes 0-9 lines.     |\n| `size_S`   | Denotes a PR that changes 10-29 lines.   |\n| `size_m`   | Denotes a PR that changes 30-99 lines.   |\n| `size_l`   | Denotes a PR that changes 100-499 lines. |\n| `size_xl`  | Denotes a PR that changes 500-999 lines. |\n| `size_xxl` | Denotes a PR that changes 1000+ lines.   |",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 19
+      },
+      "hideTimeOverride": true,
+      "id": 16,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refId": "A",
+          "target": "groupByNode(summarize(github.*.*.pull_requests.*.time_to_merge, '1w', 'avg'), 4, 'sum')"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "3M",
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Trend over the last 3 month by PR size",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "dtdurations",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
         }
       ],
       "yaxis": {
@@ -195,7 +285,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 19
+        "y": 27
       },
       "hideTimeOverride": true,
       "id": 8,
@@ -204,7 +294,7 @@
         "maxValue": "172800",
         "minValue": 0,
         "orientation": "auto",
-        "showThresholdLabels": true,
+        "showThresholdLabels": false,
         "showThresholdMarkers": true,
         "thresholds": [
           {
@@ -236,7 +326,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
+          "target": "averageSeries(github.*.*.pull_requests.*.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
@@ -251,7 +341,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 19
+        "y": 27
       },
       "hideTimeOverride": true,
       "id": 6,
@@ -292,7 +382,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
+          "target": "averageSeries(github.*.*.pull_requests.*.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
@@ -307,7 +397,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 19
+        "y": 27
       },
       "hideTimeOverride": true,
       "id": 12,
@@ -316,7 +406,7 @@
         "maxValue": "172800",
         "minValue": 0,
         "orientation": "auto",
-        "showThresholdLabels": true,
+        "showThresholdLabels": false,
         "showThresholdMarkers": true,
         "thresholds": [
           {
@@ -348,7 +438,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "averageSeries(github.*.*.pull_requests.time_to_merge)"
+          "target": "averageSeries(github.*.*.pull_requests.*.time_to_merge)"
         }
       ],
       "timeFrom": "now/M",
@@ -365,8 +455,8 @@
     "list": []
   },
   "time": {
-    "from": "now-90d",
-    "to": "now"
+    "from": "now/d",
+    "to": "now/d"
   },
   "timepicker": {
     "refresh_intervals": [

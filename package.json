@@ -15,8 +15,8 @@
   },
   "scripts": {
     "env": "node src/print_env.js",
-    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 src/**/*.js src/*.js",
-    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write src/**/*.js src/*.js",
+    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 src/**/*.js src/*.js README.md",
+    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write src/**/*.js src/*.js README.md",
     "start": "node src/cli.js",
     "test": "jest"
   },
@@ -24,8 +24,12 @@
     "type": "git",
     "url": "git+https://github.com/matchilling/github-metrics-graphite-exporter.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Mathias Schilling",
+    "email": "m@matchilling.com",
+    "url": "https://www.matchilling.com"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/matchilling/github-metrics-graphite-exporter/issues"
   },

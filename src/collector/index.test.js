@@ -33,11 +33,11 @@ describe('#composeQuery', () => {
     const query = composeQuery().replace(/ /g, '');
     const expected = `query($owner: String!, $name: String!) {
       repository(owner: $owner, name: $name) {
-        pullRequests(first: 100, states: MERGED, orderBy: { field: UPDATED_AT, direction: ASC }) {
+        pullRequests(first: 50, states: MERGED, orderBy: { field: UPDATED_AT, direction: ASC }) {
           edges {
             node { createdAt, closedAt, updatedAt, mergedAt, id, title, url, comments {
               totalCount
-            } },
+            }, additions, changedFiles, deletions },
             cursor
           }
         }
@@ -53,11 +53,11 @@ describe('#composeQuery', () => {
     ).replace(/ /g, '');
     const expected = `query($owner: String!, $name: String!, $after: String!) {
       repository(owner: $owner, name: $name) {
-        pullRequests(first: 100, states: MERGED, orderBy: { field: UPDATED_AT, direction: ASC }, after: $after) {
+        pullRequests(first: 50, states: MERGED, orderBy: { field: UPDATED_AT, direction: ASC }, after: $after) {
           edges {
             node { createdAt, closedAt, updatedAt, mergedAt, id, title, url, comments {
               totalCount
-            } },
+            }, additions, changedFiles, deletions },
             cursor
           }
         }

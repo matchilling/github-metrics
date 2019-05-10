@@ -1,5 +1,5 @@
 const githubRequestConfig = {
-  MAX_ITEMS: 100,
+  MAX_ITEMS: 50,
 };
 
 const collector = async (
@@ -29,12 +29,22 @@ const composeQuery = after => {
         edges {
           node { createdAt, closedAt, updatedAt, mergedAt, id, title, url, comments {
             totalCount
-          } },
+          }, additions, changedFiles, deletions },
           cursor
         }
       }
     }
   }`;
+};
+
+const queryGitHub = async (githubClient, query, queryParams) => {
+  try {
+    return await githubClient.query(query, queryParams);
+  } catch (error) {
+    process.stderr.write('Error while querying GitHub:\n');
+    process.stderr.write(JSON.stringify(error, 0, 2) + '\n');
+    process.exit(1);
+  }
 };
 
 const update = async (
@@ -66,7 +76,7 @@ const update = async (
     query = composeQuery();
   }
 
-  const response = await githubClient.query(query, queryParams);
+  const response = await queryGitHub(githubClient, query, queryParams);
   const edges = response.repository.pullRequests.edges;
 
   acc.numberOfPullRequestProcessed += edges.length;

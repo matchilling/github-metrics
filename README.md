@@ -4,11 +4,30 @@
 
 [![Grafana Example](./data/github-pr-metrics.png)](./data/github-pr-metrics.png)
 
-This exporter converts raw GitHub pull request data to time series. The exported data points represent the number of seconds elapsed between the creation of the pull request and the merging of the pull request.
+## Available Metrics
 
-The timestamp is the creation time of the PR.
+| Tables        |                                                                  Description                                                                   |                                              Graphite Path |
+| ------------- | :--------------------------------------------------------------------------------------------------------------------------------------------: | ---------------------------------------------------------: |
+| Time to merge | The exported data points represent the number of seconds elapsed between the creation of the pull request and the merging of the pull request. | `github.{OWNER}.{REPO}.pull_requests.{SIZE}.time_to_merge` |
 
-Exposed metrics name: `github.{GITHUB_USER_NAME}.{GITHUB_REPO_NAME}.pull_requests.time_to_merge`
+**Explanation**:
+
+- `OWNER`: the owner of the repo (e.g. facebook)
+- `REPO`: the repository name (e.g. react)
+- `SIZE`: size calculated based on the total lines of code changed (additions and deletions).
+
+### Pull Request Sizes
+
+The pull request size calculated based on the total lines of code changed (`total additions + total deletions`).
+
+| Name       | Description                              |
+| ---------- | ---------------------------------------- |
+| `size_XS`  | Denotes a PR that changes 0-9 lines.     |
+| `size_S`   | Denotes a PR that changes 10-29 lines.   |
+| `size_m`   | Denotes a PR that changes 30-99 lines.   |
+| `size_l`   | Denotes a PR that changes 100-499 lines. |
+| `size_xl`  | Denotes a PR that changes 500-999 lines. |
+| `size_xxl` | Denotes a PR that changes 1000+ lines.   |
 
 ## Usage
 
@@ -35,14 +54,15 @@ $ npm start collect
 $ npm start export | nc localhost 2003
 
 # The generated time series will be written to `stdout`.
-# github.github-user-name.repository-name.pull_requests.time_to_merge 3450 1554125772
-# github.github-user-name.repository-name.pull_requests.time_to_merge 935617 1553187544
+# github.github-user-name.repository-name.pull_requests.size_m.time_to_merge 3450 1554125772
+# github.github-user-name.repository-name.pull_requests.size_xxl.time_to_merge 935617 1553187544
 # ...
 ```
 
 You can run the complete stack using [Docker Compose](https://docs.docker.com/compose/), just set your environment variables in the `.env` file in the root project according to the example `.env.example` and run `docker-compose up`.
 
 For example:
+
 ```sh
 # Note that the `./data` directory is mounted to the docker container, to keep your data persistent place your sqlite database in here
 $ cat > .env <<EOL
