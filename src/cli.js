@@ -1,5 +1,5 @@
 const { collector } = require('./collector');
-const { exporter } = require('./exporter');
+const { exporter: graphiteExporter } = require('./exporter/graphite');
 const Database = require('better-sqlite3');
 const { getOrFail } = require('./env');
 const { GitHub } = require('github-graphql-api');
@@ -46,7 +46,7 @@ program
       fileMustExist: true,
     });
 
-    await exporter(
+    await graphiteExporter(
       database,
       getOrFail('GITHUB_USER_NAME'),
       getOrFail('GITHUB_REPO_NAME')
