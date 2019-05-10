@@ -67,3 +67,11 @@ EOL
 
 $ docker-compose up
 ```
+
+### Docker
+
+```sh
+# Collector
+$ make build-collect
+$ make run-collect OWNER=facebook REPO=react
+```

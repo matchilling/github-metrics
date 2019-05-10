@@ -1,5 +1,5 @@
 {
-  "name": "github-metrics-graphite-exporter",
+  "name": "github-metrics",
   "version": "1.0.0",
   "description": "[![Build Status](https://travis-ci.org/matchilling/github-metrics-graphite-exporter.svg?branch=master)](https://travis-ci.org/matchilling/github-metrics-graphite-exporter)",
   "main": "src/cli.js",
