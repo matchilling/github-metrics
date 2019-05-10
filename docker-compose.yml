@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    command: bash -c "npm start collect && npm start export:toGraphite | nc graphite 2003"
+    command: bash -c "npm test"
     depends_on:
       - graphite
     tty: true
@@ -14,8 +14,6 @@ services:
       - ./data:/opt/github-metrics/data
       - ./src:/opt/github-metrics/src
     environment:
-      GITHUB_USER_NAME: ${GITHUB_USER_NAME}
-      GITHUB_REPO_NAME: ${GITHUB_REPO_NAME}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       DATABASE_PATH: ${DATABASE_PATH}
 

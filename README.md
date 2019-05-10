@@ -32,13 +32,6 @@ The pull request size calculated based on the total lines of code changed (`tota
 ## Usage
 
 ```sh
-# The user and repo name you want to collect and display metrics
-#   e.g. https://github.com/facebook/react
-#   GITHUB_USER_NAME=facebook
-#   GITHUB_REPO_NAME=react
-$ export GITHUB_USER_NAME=github-user-name
-$ export GITHUB_REPO_NAME=github-repo-name
-
 # Create a personal access tokens (https://github.com/settings/tokens/new)
 $ export GITHUB_TOKEN=github-token
 
@@ -48,10 +41,12 @@ $ export DATABASE_PATH=data/github.db
 $ npm install
 
 # Collect data from GitHub
-$ npm start collect
+# npm start collect <owner> <repository>
+$ npm start collect facebook react
 
 # Push data to graphite
-$ npm start export | nc localhost 2003
+# npm start export <owner> <repository>
+$ npm start export facebook react | nc localhost 2003
 
 # The generated time series will be written to `stdout`.
 # github.github-user-name.repository-name.pull_requests.size_m.time_to_merge 3450 1554125772

@@ -8,8 +8,8 @@ const pkg = require('../package.json');
 
 program
   .version(pkg.version)
-  .command('collect')
-  .action(async () => {
+  .command('collect <owner> <repository>')
+  .action(async (owner, repository) => {
     const database = new Database(getOrFail('DATABASE_PATH'), {
       fileMustExist: true,
     });
@@ -17,18 +17,16 @@ program
       token: getOrFail('GITHUB_TOKEN'),
     });
 
-    const githubUserName = getOrFail('GITHUB_USER_NAME');
-    const githubRepoName = getOrFail('GITHUB_REPO_NAME');
     const { numberOfPullRequestProcessed, lastCursor } = await collector(
       database,
       githubClient,
-      githubUserName,
-      githubRepoName
+      owner,
+      repository
     );
 
     process.stdout.write(
-      `Stats for "${githubUserName}-${githubRepoName}":\n` +
-        `  Url "https://github.com/${githubUserName}/${githubRepoName}/pulls?utf8=✓&q=is%3Apr+is%3Amerged":\n` +
+      `Stats for "${owner}-${repository}":\n` +
+        `  Url "https://github.com/${owner}/${repository}/pulls?utf8=✓&q=is%3Apr+is%3Amerged":\n` +
         `  Number of processed pull requests: ${numberOfPullRequestProcessed}\n` +
         `  Last cursor: ${lastCursor}\n`
     );
@@ -40,17 +38,13 @@ program
 
 program
   .version(pkg.version)
-  .command('export:toGraphite')
-  .action(async () => {
+  .command('export:toGraphite <owner> <repository>')
+  .action(async (owner, repository) => {
     const database = new Database(getOrFail('DATABASE_PATH'), {
       fileMustExist: true,
     });
 
-    await graphiteExporter(
-      database,
-      getOrFail('GITHUB_USER_NAME'),
-      getOrFail('GITHUB_REPO_NAME')
-    );
+    await graphiteExporter(database, owner, repository);
 
     if (database.open) {
       database.close();
