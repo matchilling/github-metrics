@@ -350,7 +350,7 @@
         "maxValue": "172800",
         "minValue": 0,
         "orientation": "auto",
-        "showThresholdLabels": true,
+        "showThresholdLabels": false,
         "showThresholdMarkers": true,
         "thresholds": [
           {
