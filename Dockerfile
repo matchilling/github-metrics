@@ -1,4 +1,5 @@
 FROM node:10.13.0-alpine
+MAINTAINER Mathias Schilling <m@matchilling.com>
 
 ENV APP_PATH /opt/github-metrics
 

@@ -71,7 +71,13 @@ $ docker-compose up
 ### Docker
 
 ```sh
-# Collector
-$ make build-collect
-$ make run-collect OWNER=facebook REPO=react
+# Add your GitHub token and database path to the .env or export them
+$ export GITHUB_TOKEN=github-token
+$ export DATABASE_PATH=data/github.db
+
+# Run the collector
+$ make collect owner=facebook repository=react
+
+# Pipe the data to Graphite
+$ make export-graphite owner=facebook repository=react | nc localhost 2003
 ```
