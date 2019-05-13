@@ -18,6 +18,7 @@ describe('#exporter', () => {
   test('writes to std out the correct metric', () => {
     const database = composeDatabaseMock([
       {
+        repository: 'bob/left-pad',
         data:
           '{"createdAt":"2018-03-20T11:02:32Z","mergedAt":"2018-03-20T14:21:36Z","additions":369,"deletions":174}',
       },
@@ -32,6 +33,7 @@ describe('#exporter', () => {
   test('ignores input if size label can not be determined', () => {
     const database = composeDatabaseMock([
       {
+        repository: 'bob/left-pad',
         data:
           '{"createdAt":"2018-03-20T11:02:32Z","mergedAt":"2018-03-20T14:21:36Z","additions":"foo","deletions":"bar"}',
       },
