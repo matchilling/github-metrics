@@ -46,11 +46,11 @@ $ npm start collect facebook react
 
 # Push data to graphite
 # npm start export <owner> <repository>
-$ npm start export facebook react | nc localhost 2003
+$ npm start export:graphite facebook react | nc localhost 2003
 
 # The generated time series will be written to `stdout`.
-# github.github-user-name.repository-name.pull_requests.size_m.time_to_merge 3450 1554125772
-# github.github-user-name.repository-name.pull_requests.size_xxl.time_to_merge 935617 1553187544
+# github.facebook.react.pull_requests.size_m.time_to_merge 3450 1554125772
+# github.facebook.react.pull_requests.size_xxl.time_to_merge 935617 1553187544
 # ...
 ```
 
@@ -61,8 +61,6 @@ For example:
 ```sh
 # Note that the `./data` directory is mounted to the docker container, to keep your data persistent place your sqlite database in here
 $ cat > .env <<EOL
-GITHUB_USER_NAME=facebook
-GITHUB_REPO_NAME=react
 GITHUB_TOKEN=create a new token here https://github.com/settings/tokens/new
 DATABASE_PATH=path to your sqlite3 database e.g. data/github.db
 EOL

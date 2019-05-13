@@ -57,7 +57,7 @@ const update = async (
     lastCursor: '',
   }
 ) => {
-  const repository = `${githubUserName}-${githubRepoName}`;
+  const repository = `${githubUserName}/${githubRepoName}`;
   const stmt = database.prepare(
     `SELECT value FROM pull_request_cursor WHERE repository = ?;`
   );

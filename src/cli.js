@@ -1,4 +1,5 @@
 const { collector } = require('./collector');
+const { exporter: csvExporter } = require('./exporter/csv');
 const { exporter: graphiteExporter } = require('./exporter/graphite');
 const Database = require('better-sqlite3');
 const { getOrFail } = require('./env');
@@ -38,7 +39,22 @@ program
 
 program
   .version(pkg.version)
-  .command('export:toGraphite <owner> <repository>')
+  .command('export:csv')
+  .action(async (owner, repository) => {
+    const database = new Database(getOrFail('DATABASE_PATH'), {
+      fileMustExist: true,
+    });
+
+    await csvExporter(database);
+
+    if (database.open) {
+      database.close();
+    }
+  });
+
+program
+  .version(pkg.version)
+  .command('export:graphite <owner> <repository>')
   .action(async (owner, repository) => {
     const database = new Database(getOrFail('DATABASE_PATH'), {
       fileMustExist: true,

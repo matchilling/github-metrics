@@ -6,6 +6,7 @@
   "dependencies": {
     "better-sqlite3": "^5.4.0",
     "commander": "^2.20.0",
+    "csv-writer": "^1.3.0",
     "github-graphql-api": "^1.0.6",
     "moment": "^2.24.0"
   },
@@ -15,8 +16,8 @@
   },
   "scripts": {
     "env": "node src/print_env.js",
-    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 src/**/*.js src/*.js README.md",
-    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write src/**/*.js src/*.js README.md",
+    "lint": "prettier --single-quote --trailing-comma=es5 --debug-check es5 'src/**/*.js' README.md",
+    "lint:fix": "prettier --single-quote --trailing-comma=es5 es5 --write 'src/**/*.js' README.md",
     "start": "node src/cli.js",
     "test": "jest"
   },
